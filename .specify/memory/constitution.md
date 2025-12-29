@@ -1,55 +1,103 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Naeem Documentation App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Clean Architecture
+All features follow Clean Architecture with clear separation of concerns:
+- Domain layer: Business logic and entities (independent of framework)
+- Data layer: Bluetooth communication and persistence
+- Presentation layer: Jetpack Compose UI
+- Each layer must be independently testable
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Pure Native Implementation
+No external printer libraries permitted:
+- Direct Bluetooth Classic API usage (android.bluetooth.*)
+- Custom ESC/POS command implementation
+- No third-party printer SDKs or wrappers
+- Full control over printer communication protocol
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Coroutines for Concurrency
+All asynchronous operations use Kotlin Coroutines:
+- Bluetooth operations on Dispatchers.IO
+- UI updates on Dispatchers.Main
+- Proper error handling with try-catch
+- Thread safety guaranteed through structured concurrency
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. User-Facing Error Handling
+All errors must be communicated to users:
+- Toast for transient errors (connection failed, print error)
+- Snackbar for recoverable errors with actions
+- Clear, actionable error messages (no technical jargon)
+- Graceful degradation (continue working if printer disconnected)
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Android Best Practices
+Follow Android development standards:
+- Jetpack Compose for UI (Material Design 3)
+- ViewModel for state management
+- SharedPreferences for simple persistence
+- Runtime permissions with proper user prompts
+- Lifecycle-aware components
 
-### [PRINCIPLE_6_NAME]
+### VI. Simplicity First
+Start with minimal viable implementation:
+- Single hardcoded receipt format (no customization)
+- Basic amount input only
+- Auto-connect to last used printer
+- No print history or logs
+- YAGNI: Add complexity only when needed
 
+## Technical Constraints
 
-[PRINCIPLE__DESCRIPTION]
+### Platform Requirements
+- **Minimum SDK**: Android 8.0 (API 26)
+- **Target SDK**: Android 14 (API 34)
+- **Bluetooth**: Classic only (no BLE)
+- **Permissions**: BLUETOOTH, BLUETOOTH_ADMIN (legacy); BLUETOOTH_CONNECT, BLUETOOTH_SCAN (Android 12+)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Performance Standards
+- **Connection Time**: <3 seconds to paired printer
+- **Print Time**: <2 seconds from button press to print start
+- **UI Responsiveness**: No ANR (all blocking operations off main thread)
+- **Memory**: <50MB RAM usage
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Security & Privacy
+- No external network access required
+- No data collection or analytics
+- Printer MAC address stored locally only
+- No sensitive data in logs
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Testing Requirements
+- Unit tests for business logic (BluetoothHelper, ReceiptBuilder)
+- UI tests for critical flows (amount input, print action)
+- Manual testing with actual thermal printer required
+- Test both connection scenarios (auto-connect success/failure)
+
+### Code Quality Gates
+- All Bluetooth operations must be wrapped in try-catch
+- No hardcoded strings in UI (use strings.xml)
+- Proper Compose state management (no direct mutable state)
+- AndroidManifest complete with all required permissions
+
+### Review Checklist
+- Constitution compliance verified
+- Bluetooth operations on background thread
+- Error handling with user feedback
+- Permission handling tested on Android 12+
+- Manual printer test completed
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all implementation preferences. Any deviation must be:
+1. Documented with clear rationale
+2. Approved before implementation
+3. Added to Complexity Tracking in plan.md
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+All code reviews must verify:
+- Clean Architecture layers respected
+- No external printer libraries introduced
+- Coroutines used correctly (proper dispatchers)
+- User-facing error messages present
+
+**Version**: 1.0.0 | **Ratified**: 2025-12-29 | **Last Amended**: 2025-12-29
