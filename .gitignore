@@ -1,0 +1,66 @@
+# Android Studio
+.gradle/
+.idea/
+*.iml
+*.apk
+*.jks
+*.keystore
+local.properties
+
+# Build outputs
+build/
+app/build/
+*.class
+*.jar
+*.war
+*.aar
+
+# Keystore and signing
+keystore.properties
+naeem_release_key.jks
+*.jks
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Android specific
+.DS_Store
+*.swp
+*.swo
+*~
+.classpath
+.project
+.settings/
+.metadata
+
+# IDE
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Kotlin
+*.kt.bak
+buildSrc/.gradle/
+
+# Temporary files
+*.log
+*.tmp
+.vscode/
+
+# Test files
+.coverage
+coverage/
+
+# ProGuard
+proguard_mapping.txt
+
+# Node (if used)
+node_modules/
+
+# Sensitive files
+*.key
+*.pem
+*.crt

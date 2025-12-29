@@ -25,11 +25,11 @@ description: "Release Candidate v1.0 - Production-Ready Build Task List"
 
 **Purpose**: Verify development environment and prepare for release build tasks
 
-- [ ] T001 Verify Android Studio installed with SDK 34 and build tools configured
-- [ ] T002 Verify JDK 11 is configured and accessible via `java -version`
-- [ ] T003 Verify at least 2 physical Android devices (API 26+) available for testing
-- [ ] T004 Verify at least 2 thermal printer models (58mm and 80mm) paired and available
-- [ ] T005 Create backup of current codebase before beginning release modifications
+- [x] T001 Verify Android Studio installed with SDK 34 and build tools configured
+- [x] T002 Verify JDK 11 is configured and accessible via `java -version`
+- [x] T003 Verify at least 2 physical Android devices (API 26+) available for testing
+- [x] T004 Verify at least 2 thermal printer models (58mm and 80mm) paired and available
+- [x] T005 Create backup of current codebase before beginning release modifications
 
 **Estimated Effort**: 30 minutes (manual verification)
 
@@ -41,11 +41,11 @@ description: "Release Candidate v1.0 - Production-Ready Build Task List"
 
 **⚠️ CRITICAL**: These tasks must complete before any user story implementation begins
 
-- [ ] T006 Audit all Kotlin files for debug logging with `grep -r "Log\.d\|Log\.v\|println" app/src/main/java/`
-- [ ] T007 Audit all Kotlin files for temporary test code or TODO comments with `grep -r "TODO\|FIXME\|TEST" app/src/main/java/`
-- [ ] T008 Review ProGuard rules in app/proguard-rules.pro for Bluetooth class preservation
-- [ ] T009 Verify app/src/main/res/values/strings.xml contains app_name = "Naeem Documentation"
-- [ ] T010 Verify app/src/main/res/mipmap-* directories contain appropriate launcher icon (not default Android robot)
+- [x] T006 Audit all Kotlin files for debug logging with `grep -r "Log\.d\|Log\.v\|println" app/src/main/java/`
+- [x] T007 Audit all Kotlin files for temporary test code or TODO comments with `grep -r "TODO\|FIXME\|TEST" app/src/main/java/`
+- [x] T008 Review ProGuard rules in app/proguard-rules.pro for Bluetooth class preservation
+- [x] T009 Verify app/src/main/res/values/strings.xml contains app_name = "Naeem Documentation"
+- [x] T010 Verify app/src/main/res/mipmap-* directories contain appropriate launcher icon (not default Android robot)
 
 **Estimated Effort**: 1 hour (code inspection)
 
@@ -61,10 +61,10 @@ description: "Release Candidate v1.0 - Production-Ready Build Task List"
 
 ### Implementation for User Story 1
 
-- [ ] T011 [US1] Verify minSdk=26, targetSdk=34, versionCode=1, versionName="1.0" in app/build.gradle.kts
-- [ ] T012 [US1] Verify applicationId="com.naeem.documentation" in app/build.gradle.kts defaultConfig
-- [ ] T013 [US1] Verify isMinifyEnabled=true and isShrinkResources=true in release buildType in app/build.gradle.kts
-- [ ] T014 [US1] Verify proguardFiles includes "proguard-android-optimize.txt" and "proguard-rules.pro" in app/build.gradle.kts
+- [x] T011 [US1] Verify minSdk=26, targetSdk=34, versionCode=1, versionName="1.0" in app/build.gradle.kts
+- [x] T012 [US1] Verify applicationId="com.naeem.documentation" in app/build.gradle.kts defaultConfig
+- [x] T013 [US1] Verify isMinifyEnabled=true and isShrinkResources=true in release buildType in app/build.gradle.kts
+- [x] T014 [US1] Verify proguardFiles includes "proguard-android-optimize.txt" and "proguard-rules.pro" in app/build.gradle.kts
 - [ ] T015 [US1] Run `./gradlew clean` to clear previous build artifacts
 - [ ] T016 [US1] Run `./gradlew assembleRelease --info` to generate release APK with detailed output
 - [ ] T017 [US1] Verify APK exists at app/build/outputs/apk/release/app-release.apk
@@ -90,11 +90,11 @@ description: "Release Candidate v1.0 - Production-Ready Build Task List"
 
 ### Implementation for User Story 2
 
-- [ ] T020 [US2] Verify android:label="@string/app_name" in app/src/main/AndroidManifest.xml
-- [ ] T021 [US2] Verify app_name="Naeem Documentation" in app/src/main/res/values/strings.xml
-- [ ] T022 [US2] Verify package="com.naeem.documentation" in app/src/main/AndroidManifest.xml matches applicationId
-- [ ] T023 [US2] Review app icon in app/src/main/res/mipmap-* directories (should be receipt/printer themed, not Android robot)
-- [ ] T024 [US2] If icon is default Android robot, replace with receipt/printer themed icon in all density folders (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
+- [x] T020 [US2] Verify android:label="@string/app_name" in app/src/main/AndroidManifest.xml
+- [x] T021 [US2] Verify app_name="Naeem Documentation" in app/src/main/res/values/strings.xml
+- [x] T022 [US2] Verify package="com.naeem.documentation" in app/src/main/AndroidManifest.xml matches applicationId
+- [x] T023 [US2] Review app icon in app/src/main/res/mipmap-* directories (should be receipt/printer themed, not Android robot)
+- [x] T024 [US2] If icon is default Android robot, replace with receipt/printer themed icon in all density folders (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
 - [ ] T025 [US2] Rebuild APK with `./gradlew assembleRelease` after any identity changes
 - [ ] T026 [US2] Install APK on test device via `adb install -r app/build/outputs/apk/release/app-release.apk`
 - [ ] T027 [US2] Verify app drawer displays "Naeem Documentation" with correct icon
