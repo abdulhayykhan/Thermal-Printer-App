@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Naeem Receipt Printer</string>
+    
+    <!-- Status messages -->
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_connecting">Connecting...</string>
+    <string name="status_connected">Connected: %s</string>
+    
+    <!-- UI Labels -->
+    <string name="label_amount">Amount</string>
+    <string name="label_currency">SR</string>
+    <string name="label_print">PRINT</string>
+    <string name="label_clear">CLR</string>
+    <string name="label_backspace">⌫</string>
+    <string name="label_select_printer">Select Printer</string>
+    <string name="label_select_device">Select a Bluetooth device:</string>
+    <string name="label_no_devices">No devices found</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_ok">OK</string>
+    <string name="label_connect">Connect</string>
+    
+    <!-- Error messages -->
+    <string name="error_printer_not_connected">Printer not connected. Please select a device.</string>
+    <string name="error_no_devices_found">No paired Bluetooth devices found</string>
+    <string name="error_invalid_amount">Please enter a valid amount</string>
+    <string name="error_connection_failed">Failed to connect to printer: %s</string>
+    <string name="error_print_failed">Print failed: %s</string>
+    <string name="error_socket_exception">Connection error</string>
+    <string name="error_io_exception">I/O error</string>
+    <string name="error_permission_denied">Bluetooth permission denied</string>
+    <string name="error_disconnected">Printer disconnected</string>
+    
+    <!-- Success messages -->
+    <string name="success_print_complete">Receipt printed successfully</string>
+    <string name="success_connected">Connected to printer</string>
+    
+    <!-- Permission messages -->
+    <string name="permission_bluetooth_title">Bluetooth Permission Required</string>
+    <string name="permission_bluetooth_message">This app needs Bluetooth permission to connect to your printer</string>
+    
+    <!-- Business details -->
+    <string name="business_name">NAEEM DOCUMENTATION</string>
+    <string name="receipt_date_label">Date</string>
+    <string name="receipt_amount_label">Amount</string>
+    <string name="receipt_thank_you">Thank you for your business!</string>
+</resources>
