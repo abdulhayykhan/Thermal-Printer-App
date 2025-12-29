@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Naeem Receipt Printer</string>
+    <string name="app_name">Naeem Documentation</string>
     
     <!-- Status messages -->
     <string name="status_disconnected">Disconnected</string>
